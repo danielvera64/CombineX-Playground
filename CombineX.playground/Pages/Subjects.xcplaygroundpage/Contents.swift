@@ -1,8 +1,7 @@
 //: [Previous](@previous)
 
 import Foundation
-import Combine
-//import CombineX
+import CombineX
 
 /*:
 # Subjects
@@ -33,9 +32,9 @@ relay.send("World!")
 Subscribing a subject to a publisher
 */
 
-let publisher = ["Here","we","go!"].publisher
-
-publisher.subscribe(relay) // ❌ not on CombineX
+let publisher = Publishers.Sequence<[String], Never>(sequence: ["Here","we","go!"])
+//publisher.subscribe(relay)
+let subscription3: AnyCancellable = publisher.subscribe(relay)
 
 /*:
 ## Example 3

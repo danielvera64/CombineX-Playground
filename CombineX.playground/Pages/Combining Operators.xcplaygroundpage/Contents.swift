@@ -1,7 +1,6 @@
 //: [Previous](@previous)
 
 import Foundation
-//import Combine
 import CombineX
 
 /*:
@@ -45,8 +44,8 @@ passwordPublisher.send("verystrongpassword")
 - ... all publishers must be of the same type.
 */
 print("\n* Demonstrating Merge")
-let publisher1 = [1,2,3,4,5].publisher
-let publisher2 = [300,400,500].publisher
+let publisher1 = Publishers.Sequence<[Int], Never>(sequence: [1,2,3,4,5])
+let publisher2 = Publishers.Sequence<[Int], Never>(sequence: [300,400,500])
 
 let mergedPublishersSubscription = Publishers
   .Merge(publisher1, publisher2)
