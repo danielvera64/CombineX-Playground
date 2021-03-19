@@ -3,6 +3,7 @@
 import Foundation
 //import Combine
 import CombineX
+import CXFoundation
 
 /*:
 # Scheduling operators
@@ -21,8 +22,8 @@ let firstStepDone = DispatchSemaphore(value: 0)
 print("* Demonstrating receive(on:)")
 
 let publisher = PassthroughSubject<String, Never>()
-let receivingQueue = DispatchQueue(label: "receiving-queue")
-let subscription = publisher // ❌ not working on CombineX
+let receivingQueue = DispatchQueue(label: "receiving-queue").cx
+let subscription = publisher
   .receive(on: receivingQueue)
   .sink { value in
     print("Received value: \(value) on thread \(Thread.current)")
@@ -46,8 +47,8 @@ firstStepDone.wait()
 - may or may not impact the queue on which values are delivered
 */
 print("\n* Demonstrating subscribe(on:)")
-let subscription2 = [1,2,3,4,5].publisher
-  .subscribe(on: DispatchQueue.global())
+let subscription2 = Publishers.Sequence<[Int], Never>(sequence: [1,2,3,4,5])
+  .subscribe(on: DispatchQueue.global().cx)
   .handleEvents(receiveOutput: { value in
     print("Value \(value) emitted on thread \(Thread.current)")
   })

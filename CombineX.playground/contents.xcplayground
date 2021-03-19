@@ -7,13 +7,13 @@
         <page name='Subscriptions'/>
         <page name='Cancellation &amp; Memory Management'/>
         <page name='Simple Operators'/>
-        <page name='Combining Operators❌'/>
-        <page name='Scheduling❌'/>
+        <page name='Scheduling'/>
         <page name='Foundation and Combine'/>
         <page name='Flatmap and error types❌'/>
         <page name='@Published properties❌'/>
         <page name='Future and Promises'/>
         <page name='Debugging'/>
         <page name='Custom UIKit Publishers'/>
+        <page name='Combining Operators'/>
     </pages>
 </playground>
